@@ -17,17 +17,17 @@ app.on('window-all-closed', function() {
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1000, height: 800});
-
-  // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html#source=boards/groundstation.json');
+  // zoom so we have an extra big dashboard
+  mainWindow = new BrowserWindow({"zoom-factor": 0.75 });
 
   // Open the DevTools for development
   if (process.env.NODE_ENV === "test") {
+      mainWindow.loadURL('file://' + __dirname + '/index.html');;
       mainWindow.webContents.openDevTools();
       mainWindow.maximize();
   }
   else {
+      mainWindow.loadURL('file://' + __dirname + '/index.html#source=boards/groundstation.json');
       mainWindow.fullscreen();
   }
 
