@@ -17,18 +17,18 @@ app.on('window-all-closed', function() {
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  // zoom so we have an extra big dashboard
+  // zoom so we have an extra wide dashboard
   mainWindow = new BrowserWindow({"zoom-factor": 0.75 });
 
   // Open the DevTools for development
   if (process.env.NODE_ENV === "test") {
+      mainWindow.maximize();
       mainWindow.loadURL('file://' + __dirname + '/index.html');;
       mainWindow.webContents.openDevTools();
-      mainWindow.maximize();
   }
   else {
+      mainWindow.setFullScreen(true);
       mainWindow.loadURL('file://' + __dirname + '/index.html#source=boards/groundstation.json');
-      mainWindow.fullscreen();
   }
 
   // Emitted when the window is closed.
